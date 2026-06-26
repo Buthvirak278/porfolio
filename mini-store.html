@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Store Case Study | Vuthea Virakbuth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --bg-canvas: #06070a;
+            --surface-card: #0b0d16;
+            --surface-border: rgba(255, 255, 255, 0.05);
+            --brand-primary: #f8fafc;
+            --brand-accent: #6366f1;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Minimal Navigation --- */
+        header {
+            position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 1200px;
+            background: rgba(11, 13, 22, 0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 100; border: 1px solid var(--surface-border); border-radius: 16px;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.5rem; }
+        .back-btn { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; transition: var(--transition-smooth); }
+        .back-btn:hover { color: var(--brand-primary); }
+
+        /* --- Case Study Layout Hierarchy --- */
+        main { max-width: 1200px; margin: 0 auto; padding: 8rem 1.5rem 4rem; }
+        
+        .case-header { margin-bottom: 3rem; }
+        .case-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--brand-accent); font-weight: 700; margin-bottom: 0.5rem; display: block; }
+        .case-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; color: var(--brand-primary); line-height: 1.2; }
+
+        /* --- Metrics Summary Grid --- */
+        .metrics-panel { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; 
+            background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 20px; 
+            padding: 2rem; margin-bottom: 5rem;
+        }
+        .metric-item h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 1px; margin-bottom: 0.25rem; }
+        .metric-item p { font-size: 1.25rem; font-weight: 700; color: var(--brand-primary); }
+
+        /* --- CHRONOLOGICAL FLOW WORKSPACE --- */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4.5rem;
+            margin-top: 2rem;
+        }
+
+        .flow-step-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .flow-step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Flex row that holds mockups cleanly side-by-side */
+        .mockup-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        /* Standardized mobile device frame template aspect ratios */
+        .mockup-phone-box {
+            width: 100%;
+            max-width: 210px; /* Perfect balance to fit multi-screen sequences horizontally */
+            aspect-ratio: 9 / 19.5; /* Emulates native modern smartphone screen proportions */
+            background: #0e111a;
+            border: 1px solid var(--surface-border);
+            border-radius: 24px;
+            padding: 0.45rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        
+        .mockup-phone-box:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.1);
+        }
+
+        .mockup-phone-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        footer { text-align: center; padding: 4rem 1.5rem; font-size: 0.9rem; color: var(--text-secondary); border-top: 1px solid var(--surface-border); margin-top: 6rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-inner">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio Workspace</a>
+            <div style="font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; color: var(--text-secondary);">USER FLOW JOURNEY</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="case-header" data-aos="fade-up">
+            <span class="case-tag">E-Commerce Product Architecture</span>
+            <h1 class="case-title">Mini-Store UI Layout & Experience Architecture</h1>
+        </section>
+
+        <!-- Metrics Panel Overview -->
+        <div class="metrics-panel" data-aos="fade-up" data-aos-delay="100">
+            <div class="metric-item">
+                <h4>Role</h4>
+                <p>UI/UX Designer</p>
+            </div>
+            <div class="metric-item">
+                <h4>Platform</h4>
+                <p>Mobile Native Web</p>
+            </div>
+            <div class="metric-item">
+                <h4>Core Focus</h4>
+                <p>Layout Speed & Flows</p>
+            </div>
+            <div class="metric-item">
+                <h4>Timeline</h4>
+                <p>April 2026</p>
+            </div>
+        </div>
+
+        <!-- --- STEP BY STEP APP FLOW SECTION --- -->
+        <div class="flow-container" data-aos="fade-up" data-aos-delay="150">
+
+            <!-- STEP 1: LOGO / SPLASH -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Logo</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="first.jpg" alt="Logo Splash Screen">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: LOGIN -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Login</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="login.jpg" alt="Login View">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="signup.jpg" alt="Create Account View">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: PASSCODE -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Passcode</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="code.jpg" alt="Set Passcode Screen">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="code2.jpg" alt="Confirm Passcode Screen">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: MAIN PAGE -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Main Page</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="home.jpg" alt="Home Screen View">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="shop.jpg" alt="Marketplace Layout">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="fav.jpg" alt="My Wishlist Portal">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="cart.jpg" alt="Shopping Cart Checkout">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="profile.jpg" alt="User Profile Persistence">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: SEARCH PAGE -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Search Page</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="search.jpg" alt="Active Search Terminal">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6: DETAIL ITEMS -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Detail items</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="items1.jpg" alt="Product Spec Sheet View">
+                    </div>
+                    <div class="mockup-phone-box">
+                        <img src="items2.jpg" alt="Product Slider Details">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 7: PAYMENTS -->
+            <div class="flow-step-section">
+                <h3 class="flow-step-title">Payments</h3>
+                <div class="mockup-row">
+                    <div class="mockup-phone-box">
+                        <img src="payment.jpg" alt="Transaction Finished Summary">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vuthea Virakbuth. Designed with emphasis on clean user experience flows.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>

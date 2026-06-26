@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuthea Virakbuth | UI/UX Designer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- Premium UI/UX Design Tokens --- */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --bg-canvas: #06070a;
+            --surface-card: #0b0d16;
+            --surface-border: rgba(255, 255, 255, 0.05);
+            --brand-primary: #f8fafc;
+            --brand-accent: #6366f1; /* Designer Indigo */
+            --brand-success: #10b981;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Refined Minimalist Navigation --- */
+        header {
+            position: fixed; 
+            top: 1.5rem; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: calc(100% - 2rem); 
+            max-width: 1200px;
+            background: rgba(11, 13, 22, 0.75); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100; 
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-inner {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0.85rem 1.5rem;
+        }
+
+        .nav-brand { 
+            font-size: 1rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            color: var(--brand-primary); 
+            text-decoration: none; 
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .nav-brand span {
+            color: var(--brand-accent);
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .nav-menu { 
+            display: flex; 
+            list-style: none; 
+            gap: 1.5rem; 
+            align-items: center;
+        }
+
+        .nav-menu a { 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 0.85rem; 
+            transition: var(--transition-smooth); 
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-menu a:hover { color: var(--brand-primary); }
+        .nav-menu a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+        .nav-menu a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+            background: var(--brand-accent); transform: scaleX(0); transform-origin: right;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 1rem;
+            border-left: 1px solid var(--surface-border);
+            padding-left: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .nav-socials a {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        .nav-socials a:hover {
+            color: var(--brand-accent);
+        }
+
+        /* --- Section Frameworks --- */
+        section { 
+            padding: clamp(5rem, 10vh, 8rem) 1.5rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        .section-header { margin-bottom: clamp(2.5rem, 6vh, 4rem); }
+        .section-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--brand-accent); font-weight: 700; margin-bottom: 0.5rem; display: block;}
+        .title { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -1px; color: var(--brand-primary); }
+
+        /* --- Premium UX Interactive Buttons --- */
+        .btn-ux {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: var(--brand-primary); color: #050508; padding: 0.85rem 1.75rem; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .btn-ux:hover { transform: translateY(-3px); background: #fff; box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2); }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+            border: 1px solid var(--surface-border);
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255,255,255,0.15); }
+
+        /* --- Hero Presentation Frame --- */
+        #hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding-top: 8rem; }
+        #hero .designer-statement { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            font-weight: 800; 
+            letter-spacing: -2px; 
+            line-height: 1.1; 
+            max-width: 1000px; 
+            margin-bottom: 1.5rem; 
+            background: linear-gradient(135deg, #fff 40%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #hero p { max-width: 600px; font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-secondary); margin-bottom: 2.5rem; }
+
+        /* --- Creative Profile Grid --- */
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+        @media (min-width: 1024px) { .about-grid { grid-template-columns: 5fr 7fr; gap: 5rem; } }
+        
+        .profile-frame { 
+            position: relative; border-radius: 24px; overflow: hidden; 
+            border: 1px solid var(--surface-border); background: var(--surface-card);
+            aspect-ratio: 4/5; width: 100%; max-width: 400px; margin: 0 auto;
+        }
+        @media (min-width: 1024px) { .profile-frame { max-width: none; margin: 0; } }
+        .profile-frame img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .story-content h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 1.25rem; letter-spacing: -0.5px; }
+        .story-content p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.25rem; }
+
+        .cv-contact-info {
+            margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;
+        }
+        .contact-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition-smooth); }
+        a.contact-item:hover { color: var(--brand-accent); }
+        .contact-item i { color: var(--brand-accent); width: 16px; text-align: center; }
+        
+        /* --- UX Philosophy Matrix --- */
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+        .value-card { background: var(--surface-card); border: 1px solid var(--surface-border); padding: 2.5rem; border-radius: 20px; transition: var(--transition-smooth); }
+        .value-card:hover { border-color: rgba(99, 102, 241, 0.25); transform: translateY(-4px); }
+        .value-card i { font-size: 1.5rem; color: var(--brand-accent); margin-bottom: 1.25rem; }
+        .value-card h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .value-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* --- Professional Design Timeline --- */
+        .timeline { position: relative; border-left: 2px solid var(--surface-border); padding-left: 2rem; margin-left: 0.5rem; }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: calc(-2rem - 5px); top: 0.35rem;
+            width: 8px; height: 8px; border-radius: 50%; background: var(--brand-accent);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+        .timeline-date { font-size: 0.85rem; color: var(--brand-accent); font-weight: 700; margin-bottom: 0.25rem; }
+        .timeline-title { font-size: 1.25rem; font-weight: 700; color: var(--brand-primary); }
+        .timeline-location { font-size: 0.95rem; color: var(--text-secondary); }
+
+        /* --- Design Stack Badges --- */
+        .skills-container { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        @media (min-width: 768px) { .skills-container { grid-template-columns: 1fr 1fr; } }
+        .skills-block h3 { margin-bottom: 1.25rem; font-size: 1.35rem; font-weight: 700; }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .cv-badge {
+            background: var(--surface-card); border: 1px solid var(--surface-border); color: var(--text-primary);
+            padding: 0.55rem 1.1rem; border-radius: 10px; font-size: 0.9rem; font-weight: 500;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .cv-badge.accent { border-color: rgba(99, 102, 241, 0.25); background: rgba(99, 102, 241, 0.04); color: #a5b4fc; }
+
+        /* --- INTERACTIVE TAP-TO-VIEW CV VIEWER --- */
+        .hr-cv-showcase {
+            background: var(--surface-card); border: 1px solid var(--surface-border);
+            border-radius: 28px; padding: clamp(2rem, 5vw, 4rem); margin-top: 1rem;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+        .cv-document-frame {
+            width: 100%; max-width: 600px; background: #0e111a; border-radius: 20px;
+            padding: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6); margin: 2.5rem 0;
+            overflow: hidden; cursor: zoom-in; position: relative; transition: var(--transition-smooth);
+        }
+        .cv-document-frame img { width: 100%; height: auto; border-radius: 14px; display: block; transition: var(--transition-smooth); }
+        .cv-document-frame:hover { border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 40px 90px rgba(99, 102, 241, 0.15); }
+        .cv-document-frame:hover img { transform: scale(1.02); }
+        
+        .cv-overlay-prompt {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 7, 10, 0.6); display: flex; align-items: center;
+            justify-content: center; opacity: 0; transition: var(--transition-smooth);
+            border-radius: 20px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+        }
+        .cv-document-frame:hover .cv-overlay-prompt { opacity: 1; }
+        
+        .cv-prompt-pill {
+            background: #fff; color: #000; padding: 0.75rem 1.5rem; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* --- STYLED INTERACTIVE LIGHTBOX OVERLAY --- */
+        .lightbox-modal-mask {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 5, 8, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 3000; display: none; align-items: center; justify-content: center; padding: 2rem;
+            opacity: 0; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lightbox-container {
+            max-width: 550px; width: 100%; max-height: 85vh; transform: scale(0.93);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; border-radius: 16px;
+        }
+        .lightbox-container img { width: 100%; height: auto; display: block; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.7); }
+        .lightbox-close {
+            position: absolute; top: 2rem; right: 2rem; color: var(--text-secondary);
+            font-size: 1.5rem; cursor: pointer; transition: var(--transition-smooth); z-index: 3100;
+        }
+        .lightbox-close:hover { color: #fff; }
+
+        /* --- UX Case Studies Grid --- */
+        .grid-ux { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr)); gap: 2rem; }
+        .case-study-card { 
+            background: var(--surface-card); border-radius: 24px; overflow: hidden; 
+            border: 1px solid var(--surface-border); transition: var(--transition-smooth); 
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .case-study-card:hover { transform: translateY(-6px); border-color: rgba(99, 102, 241, 0.2); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .case-img-frame { width: 100%; height: 240px; overflow: hidden; background: #0f111a; position: relative; }
+        .case-img-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .case-study-card:hover .case-img-frame img { transform: scale(1.04); }
+        
+        .case-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .case-content h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--brand-primary); }
+        .case-content p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        .methodology-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .methodology-chips span { background: rgba(99, 102, 241, 0.05); padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.75rem; border: 1px solid rgba(99, 102, 241, 0.15); color: #a5b4fc; font-weight: 500; }
+        .case-link { color: var(--brand-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; transition: var(--transition-smooth); }
+        .case-link:hover { color: var(--brand-accent); }
+
+        footer { text-align: center; padding: 4rem 1.5rem; font-size: 0.9rem; color: var(--text-secondary); border-top: 1px solid var(--surface-border); background: #090b12; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-inner">
+            <a href="#hero" class="nav-brand" id="brandText">VUTHEA VIRAKBUTH <span>UI/UX</span></a>
+            <ul class="nav-menu">
+                <li><a href="#hero">Overview</a></li>
+                <li><a href="#about">Profile</a></li>
+                <li><a href="#cv-viewer">CV Document</a></li>
+                <li><a href="#case-studies">Design Work</a></li>
+                <li class="nav-socials">
+                    <a href="https://https://www.facebook.com/share/1FqCoAbhg2/?mibextid=wwXIfr" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://t.me/vuthea_virakbuth" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.linkedin.com/in/vuthea-virakbuth-ba4ba536b?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1 class="designer-statement" data-aos="fade-up" id="heroStatement">Designing functional interfaces and digital product experiences.</h1>
+            <p data-aos="fade-up" data-aos-delay="150" id="heroSubtitle">Specializing in interaction models, interactive layout structures, interface clones, and clean user experience flows.</p>
+            <div data-aos="fade-up" data-aos-delay="300" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#cv-viewer" class="btn-ux">View CV Interactive Sheet <i class="fas fa-file-alt"></i></a>
+                <a href="#case-studies" class="btn-ux btn-secondary">Explore Case Studies <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Designer Identity</span>
+                <h2 class="title">About Me</h2>
+            </div>
+            
+            <div class="about-grid">
+                <div class="profile-frame" data-aos="fade-up">
+                    <img id="myPhoto" src="myprofile.jpg" alt="Vuthea Virakbuth Profile">
+                </div>
+                
+                <div class="story-content" data-aos="fade-up">
+                    <h3 id="storyHeading">Hi, I'm Vuthea Virakbuth.</h3>
+                    <p id="storyBody1">I am a driven UI/UX designer focused on the intersection of human behavior, platform layouts, and clean user flows. I excel at translating complex system logistics into scannable, high-fidelity interactive screens.</p>
+                    <p id="storyBody2">With strong bilingual communication skills in Khmer and English, I lead structural design workflows seamlessly, map interactive blueprints, and work efficiently under intense launch pressures.</p>
+                    
+                    <div class="cv-contact-info">
+                        <div class="contact-item"><i class="fas fa-envelope"></i> vutheavirakbuth@gmail.com</div>
+                        <div class="contact-item"><i class="fas fa-phone-alt"></i> +885 (0) 81 272 999</div>
+                     </div>
+                </div>
+            </div>
+
+            <div class="values-grid" data-aos="fade-up">
+                <div class="value-card">
+                    <i class="fas fa-compass"></i>
+                    <h4>User-Centric Layouts</h4>
+                    <p>Obsessing over scannability, wireframe patterns, and clean typography scales to optimize interaction speed.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-sitemap"></i>
+                    <h4>Structural Cooperation</h4>
+                    <p>Proven team alignment background, managing structural communication loops effectively to meet deadlines.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Rapid Prototyping</h4>
+                    <p>Fast learner framework—quickly evaluating layout flaws, mapping screen clones, and adapting to asset guidelines.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Qualifications</span>
+                <h2 class="title">Education Background</h2>
+            </div>
+            
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - 2024</div>
+                    <div class="timeline-title">Bachelor of Financial Technology</div>
+                    <div class="timeline-location">ACLEDA University of Business</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2024</div>
+                    <div class="timeline-title">English Proficiency Program</div>
+                    <div class="timeline-location">Australia Center for Education (ACE)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2022</div>
+                    <div class="timeline-title">High School Graduate</div>
+                    <div class="timeline-location">Phnom Penh Tmey High School</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competencies" style="padding-top: 0;">
+            <div class="skills-container" data-aos="fade-up">
+                <div class="skills-block">
+                    <h3>Design & Interaction Skills</h3>
+                    <div class="badge-list">
+                        <div class="cv-badge"><i class="fas fa-pencil-ruler"></i> UI Design & App Cloning</div>
+                        <div class="cv-badge"><i class="fas fa-vial"></i> Interactive Prototyping</div>
+                        <div class="cv-badge"><i class="fas fa-route"></i> User Flow Mapping</div>
+                        <div class="cv-badge"><i class="fas fa-sync"></i> Interface Adaptation</div>
+                        <div class="cv-badge"><i class="fas fa-hands-helping"></i> Team Collaboration</div>
+                    </div>
+                </div>
+                <div class="skills-block">
+                    <h3>Language Assets</h3>
+                    <div class="badge-list">
+                        <div class="cv-badge accent"><i class="fas fa-globe-asia"></i> Khmer: Native</div>
+                        <div class="cv-badge accent"><i class="fas fa-language"></i> English: Fluent/Good</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cv-viewer">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Recruiter Verification</span>
+                <h2 class="title">Curriculum Vitae</h2>
+            </div>
+            
+            <div class="hr-cv-showcase" data-aos="fade-up">
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Tap the sheet below to instantly inspect the complete verified document inside a smooth, distraction-free fullscreen lightbox layout view.</p>
+                
+                <div class="cv-document-frame" onclick="openCVLightbox()">
+                    <img src="mycv.jpg" alt="VUTHEA Virakbuth CV Sheet">
+                    <div class="cv-overlay-prompt">
+                        <div class="cv-prompt-pill"><i class="fas fa-expand"></i> Tap to View Full CV</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn-ux" onclick="openCVLightbox()"><i class="fas fa-eye"></i> Tap to View</button>
+                    <a href="mycv.jpg" download="VUTHEA_Virakbuth_CV.jpg" class="btn-ux btn-secondary"><i class="fas fa-download"></i> Download Sheet Image</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-studies">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">UX Proof Center</span>
+                <h2 class="title">Selected UI/UX Projects</h2>
+            </div>
+            <div class="grid-ux" id="caseStudiesContainer"></div>
+        </section>
+    </main>
+
+    <div class="lightbox-modal-mask" id="cvLightbox" onclick="closeCVLightbox()">
+        <div class="lightbox-close" onclick="closeCVLightbox()"><i class="fas fa-times"></i></div>
+        <div class="lightbox-container" onclick="event.stopPropagation()">
+            <img src="mycv.jpg" alt="Vuthea Virakbuth CV Fullscreen View">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Vuthea Virakbuth. UI/UX Portfolio Framework. Academic Reference: Mr. Marm Pichkhemra.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Targeted UI/UX Project Framework Presets - Updated with 3 items
+        const nativeUXCaseStudies = [
+            {
+                title: "Mini-Store E-Commerce UI Layout",
+                img: "logo.jpg",
+                desc: "An intuitive mobile marketplace application design, featuring streamlined customer profiles, product layout lists, and seller inventory management portals built for speed.",
+                tags: "E-Commerce, Product Architecture, Mobile Web"
+            },
+     
+        ];
+
+        // Perfect Fluid Screen Lightbox Logic
+        function openCVLightbox() {
+            const el = document.getElementById('cvLightbox');
+            el.style.display = "flex";
+            setTimeout(() => {
+                el.style.opacity = "1";
+                el.querySelector('.lightbox-container').style.transform = "scale(1)";
+            }, 10);
+            document.body.style.overflow = "hidden";
+        }
+
+        // Full Screen Lightbox Removal Logic
+        function closeCVLightbox() {
+            const el = document.getElementById('cvLightbox');
+            el.style.opacity = "0";
+            el.querySelector('.lightbox-container').style.transform = "scale(0.93)";
+            setTimeout(() => { el.style.display = "none"; }, 400);
+            document.body.style.overflow = "auto";
+        }
+
+        function renderUIPortfolioWorkspace() {
+            const displayFrame = document.getElementById('caseStudiesContainer');
+            displayFrame.innerHTML = "";
+
+            nativeUXCaseStudies.forEach((item) => {
+                const stepChips = item.tags.split(',').map(chip => `<span>${chip.trim()}</span>`).join('');
+                
+                // Directly directing layout cards to navigate to mini-store.html
+                const frameLayoutTemplate = `
+                    <div class="case-study-card" data-aos="fade-up">
+                        <div class="case-img-frame">
+                            <img src="${item.img}" alt="${item.title}">
+                        </div>
+                        <div class="case-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.desc}</p>
+                            <div class="methodology-chips">${stepChips}</div>
+                            <a href="mini-store.html" class="case-link">Inspect Case Metrics <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                `;
+                displayFrame.innerHTML += frameLayoutTemplate;
+            });
+        }
+
+        window.onload = renderUIPortfolioWorkspace;
+    </script>
+</body>
+</html>
